@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="es">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta de precios — GYM TONIC App</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      box-sizing: border-box;
+    }
+
+    /* Variables CSS (basadas en brandingmap) */
+    :root {
+      --bg: #0e0e11;
+      --bg-card: #1a1a1f;
+      --bg-featured: #1f1f26;
+      --text: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --accent: #6ee7b7;
+      --accent-strong: #22c55e;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --radius: 16px;
+      --transition: 0.4s ease;
+      --spacing: 24px;
+      --spacing-lg: 48px;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Layout global */
+    .container {
+      width: 100%;
+      height: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-lg) var(--spacing);
+      overflow-y: auto;
+    }
+
+    /* Secciones */
+    .section {
+      margin-bottom: var(--spacing-lg);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Tipografía */
+    .intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--spacing-lg);
+    }
+
+    .intro h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .intro h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 500;
+      margin-bottom: 16px;
+      color: var(--accent-strong);
+    }
+
+    .intro p {
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* Pricing grid */
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Pricing cards */
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .pricing-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    /* Featured card (Professional) */
+    .pricing-card.featured {
+      background: var(--bg-featured);
+      border: 2px solid var(--accent);
+      transform: scale(1.02);
+    }
+
+    .pricing-card.featured:hover {
+      transform: scale(1.02) translateY(-4px);
+      box-shadow: 0 24px 48px rgba(110, 231, 183, 0.2);
+    }
+
+    .pricing-card.featured::before {
+      content: '⭐ Recomendada';
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Card header */
+    .card-badge {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-bottom: 16px;
+    }
+
+    .badge-green { background: var(--accent); }
+    .badge-blue { background: var(--accent-blue); }
+    .badge-purple { background: var(--accent-purple); }
+
+    .pricing-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .price {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: all var(--transition);
+    }
+
+    .pricing-card:hover .price {
+      transform: scale(1.05);
+    }
+
+    .pricing-card .subtitle {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Features list */
+    .pricing-card ul {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .pricing-card li {
+      padding: 8px 0;
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .pricing-card li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .pricing-card li strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Ideal para section */
+    .ideal {
+      background: rgba(110, 231, 183, 0.05);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 24px;
+    }
+
+    .ideal-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .ideal ul {
+      margin: 0;
+    }
+
+    .ideal li {
+      font-size: 0.875rem;
+      padding: 4px 0;
+    }
+
+    /* Notes section */
+    .notes {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-top: var(--spacing-lg);
+    }
+
+    .notes h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--accent-strong);
+    }
+
+    .notes ul {
+      list-style: none;
+    }
+
+    .notes li {
+      padding: 8px 0;
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+    }
+
+    .notes li strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: var(--spacing) 16px;
+      }
+
+      .pricing {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-card.featured {
+        transform: scale(1);
+      }
+
+      .pricing-card.featured:hover {
+        transform: translateY(-4px);
+      }
+
+      .intro h1 {
+        font-size: 2rem;
+      }
+
+      .intro h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Animation delays */
+    .pricing-card:nth-child(1) { transition-delay: 0.1s; }
+    .pricing-card:nth-child(2) { transition-delay: 0.2s; }
+    .pricing-card:nth-child(3) { transition-delay: 0.3s; }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <main class="container"><!-- Intro Section -->
+   <section class="section intro">
+    <h1 id="main-title">Propuesta de precios</h1>
+    <h2 id="subtitle">GYM TONIC App</h2>
+    <p id="intro-text">Tu plataforma digital completa para centralizar, modernizar y escalar tu gimnasio</p>
+   </section><!-- Pricing Cards -->
+   <section class="section pricing"><!-- Option 1: Essential -->
+    <div class="pricing-card"><span class="card-badge badge-green"></span>
+     <h3>Essential App</h3><span class="price">3.000 €</span>
+     <div class="subtitle">
+      App móvil completa (iOS + Android)
+     </div>
+     <ul>
+      <li><strong>Centralización</strong> de los 2 gimnasios</li>
+      <li>Todas las secciones actuales con diseño, imágenes y contenido</li>
+      <li><strong>Chatbot básico</strong> + sistema de feedback</li>
+      <li>Preparación y <strong>publicación</strong> en App Store y Google Play</li>
+      <li>Set básico de diseño gráfico para Instagram</li>
+      <li>Soporte inicial post-publicación</li>
+     </ul>
+     <div class="ideal">
+      <div class="ideal-title">
+       Ideal para
+      </div>
+      <ul>
+       <li>Tener la app publicada y operativa</li>
+       <li>Presencia digital sólida</li>
+       <li>Comunicación centralizada</li>
+      </ul>
+     </div>
+    </div><!-- Option 2: Professional (Featured) -->
+    <div class="pricing-card featured"><span class="card-badge badge-blue"></span>
+     <h3>Professional Platform</h3><span class="price">5.500 €</span>
+     <div class="subtitle">
+      Todo lo anterior, más:
+     </div>
+     <ul>
+      <li><strong>Rediseño completo</strong> del logo</li>
+      <li>Set <strong>completo</strong> de diseño gráfico para Instagram</li>
+      <li>Arquitectura preparada para <strong>login de usuarios</strong></li>
+      <li>Catálogo completo de productos y servicios</li>
+      <li>Optimización <strong>UX/UI</strong> adicional</li>
+      <li>Preparación avanzada para escalado del proyecto</li>
+      <li>Mayor soporte durante revisión de Apple</li>
+     </ul>
+     <div class="ideal">
+      <div class="ideal-title">
+       Ideal para
+      </div>
+      <ul>
+       <li>Posicionar GYM TONIC como marca moderna</li>
+       <li>Tener una plataforma, no solo una app</li>
+       <li>Dejar lista la base para evolución futura</li>
+      </ul>
+     </div>
+    </div><!-- Option 3: Premium -->
+    <div class="pricing-card"><span class="card-badge badge-purple"></span>
+     <h3>Premium Digital Platform</h3><span class="price">8.500 €</span>
+     <div class="subtitle">
+      Todo lo anterior, más:
+     </div>
+     <ul>
+      <li><strong>Activación de login</strong> de usuarios</li>
+      <li>Estructura de <strong>catálogo avanzada</strong></li>
+      <li>Bases de rutinas y contenidos personalizados</li>
+      <li><strong>Chatbot conversacional avanzado</strong></li>
+      <li>Sistema preparado para <strong>monetización</strong> futura</li>
+      <li>Dashboard básico de métricas</li>
+      <li>Branding digital completo (app + redes)</li>
+      <li>Acompañamiento estratégico en el lanzamiento</li>
+     </ul>
+     <div class="ideal">
+      <div class="ideal-title">
+       Ideal para
+      </div>
+      <ul>
+       <li>Convertir la app en el núcleo digital del gimnasio</li>
+       <li>Diferenciarse claramente de la competencia</li>
+       <li>Escalar a servicios premium y fidelización</li>
+      </ul>
+     </div>
+    </div>
+   </section><!-- External Costs -->
+   <section class="section notes">
+    <h3 id="footer-title">Costes externos (no incluidos)</h3>
+    <ul>
+     <li><strong>Dominio del gimnasio:</strong> ~400 €</li>
+     <li><strong>Apple Developer Account:</strong> 99 $ / año</li>
+     <li><strong>Google Play Developer Account:</strong> 25 $ (pago único)</li>
+    </ul>
+   </section>
+  </main>
+  <script>
+    // Default config
+    const defaultConfig = {
+      main_title: 'Propuesta de precios',
+      subtitle: 'GYM TONIC App',
+      intro_text: 'Tu plataforma digital completa para centralizar, modernizar y escalar tu gimnasio',
+      footer_title: 'Costes externos (no incluidos)',
+      primary_color: '#6ee7b7',
+      background_color: '#0e0e11',
+      text_color: '#f4f4f5',
+      card_color: '#1a1a1f'
+    };
+
+    // Config reference
+    let config = {};
+
+    // onConfigChange function
+    async function onConfigChange(newConfig) {
+      config = newConfig;
+      
+      // Update text content
+      document.getElementById('main-title').textContent = config.main_title || defaultConfig.main_title;
+      document.getElementById('subtitle').textContent = config.subtitle || defaultConfig.subtitle;
+      document.getElementById('intro-text').textContent = config.intro_text || defaultConfig.intro_text;
+      document.getElementById('footer-title').textContent = config.footer_title || defaultConfig.footer_title;
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig: defaultConfig,
+        onConfigChange: onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => {
+          return new Map([
+            ['main_title', config.main_title || defaultConfig.main_title],
+            ['subtitle', config.subtitle || defaultConfig.subtitle],
+            ['intro_text', config.intro_text || defaultConfig.intro_text],
+            ['footer_title', config.footer_title || defaultConfig.footer_title]
+          ]);
+        }
+      });
+
+      // Set initial config
+      config = window.elementSdk.config;
+      onConfigChange(config);
+    }
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections and cards
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.section');
+      const cards = document.querySelectorAll('.pricing-card');
+      
+      sections.forEach(section => observer.observe(section));
+      cards.forEach(card => observer.observe(card));
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b03b498a73dcc40',t:'MTc2NjExMzgxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
