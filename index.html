@@ -74,6 +74,23 @@
       margin: 0 auto var(--spacing-lg);
     }
 
+    /* Logo */
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      display: block;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      box-shadow: 0 8px 24px rgba(110, 231, 183, 0.3);
+      transition: transform var(--transition);
+    }
+
+    .logo:hover {
+      transform: scale(1.05) rotate(5deg);
+    }
+
     .intro h1 {
       font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 600;
@@ -379,7 +396,7 @@
   <div class="language-selector"><button class="lang-btn active" data-lang="es">🇪🇸 ES</button> <button class="lang-btn" data-lang="en">🇬🇧 EN</button> <button class="lang-btn" data-lang="de">🇩🇪 DE</button> <button class="lang-btn" data-lang="fr">🇫🇷 FR</button> <button class="lang-btn" data-lang="it">🇮🇹 IT</button>
   </div>
   <main class="container"><!-- Intro Section -->
-   <section class="section intro">
+   <section class="section intro"><img src="https://res.cloudinary.com/dxhef6dju/image/upload/v1755725396/ChatGPT_Image_Apr_16_2025_12_31_00_AM_pbed1s.png" alt="GYM TONIC Logo" class="logo" onerror="this.style.display='none'; this.alt='Logo no disponible';">
     <h1 id="main-title" data-i18n="main_title">Propuesta de precios</h1>
     <h2 id="subtitle" data-i18n="subtitle">GYM TONIC App</h2>
     <p id="intro-text" data-i18n="intro_text">Tu plataforma digital completa para centralizar, modernizar y escalar tu gimnasio</p>
@@ -654,7 +671,7 @@
         option3_feature8: 'Accompagnement stratégique au lancement',
         option3_ideal1: 'Transformer l\'app en cœur numérique de la salle de sport',
         option3_ideal2: 'Se différencier clairement de la concurrence',
-        option3_ideal3: 'Évoluer vers des services premium et fidélisation',
+        option3_ideal3: 'Évoluer vers des services premium et fid��lisation',
         footer_title: 'Coûts externes (non inclus)',
         external_cost1: '<strong>Domaine de la salle de sport :</strong> ~400 €',
         external_cost2: '<strong>Apple Developer Account :</strong> 99 $ / an',
@@ -843,5 +860,5 @@
       changeLanguage('es');
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b03ca1574bacfb5',t:'MTc2NjExNDY5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b03d4b8b5680bf3',t:'MTc2NjExNTEyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
