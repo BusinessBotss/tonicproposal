@@ -249,7 +249,9 @@
 
     .ideal li {
       font-size: 0.875rem;
-      padding: 4px 0;
+      padding: 6px 0;
+      padding-left: 28px;
+      line-height: 1.5;
     }
 
     /* Notes section */
@@ -314,105 +316,441 @@
     .pricing-card:nth-child(1) { transition-delay: 0.1s; }
     .pricing-card:nth-child(2) { transition-delay: 0.2s; }
     .pricing-card:nth-child(3) { transition-delay: 0.3s; }
+
+    /* Language Selector */
+    .language-selector {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 1000;
+      display: flex;
+      gap: 8px;
+      background: var(--bg-card);
+      padding: 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .language-selector button {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all var(--transition);
+      font-family: inherit;
+    }
+
+    .language-selector button:hover {
+      background: rgba(110, 231, 183, 0.1);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .language-selector button.active {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .language-selector {
+        top: 16px;
+        right: 16px;
+        flex-wrap: wrap;
+        max-width: calc(100% - 32px);
+      }
+
+      .language-selector button {
+        padding: 6px 10px;
+        font-size: 0.8125rem;
+      }
+    }
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
- <body>
+ <body><!-- Language Selector -->
+  <div class="language-selector"><button class="lang-btn active" data-lang="es">🇪🇸 ES</button> <button class="lang-btn" data-lang="en">🇬🇧 EN</button> <button class="lang-btn" data-lang="de">🇩🇪 DE</button> <button class="lang-btn" data-lang="fr">🇫🇷 FR</button> <button class="lang-btn" data-lang="it">🇮🇹 IT</button>
+  </div>
   <main class="container"><!-- Intro Section -->
    <section class="section intro">
-    <h1 id="main-title">Propuesta de precios</h1>
-    <h2 id="subtitle">GYM TONIC App</h2>
-    <p id="intro-text">Tu plataforma digital completa para centralizar, modernizar y escalar tu gimnasio</p>
+    <h1 id="main-title" data-i18n="main_title">Propuesta de precios</h1>
+    <h2 id="subtitle" data-i18n="subtitle">GYM TONIC App</h2>
+    <p id="intro-text" data-i18n="intro_text">Tu plataforma digital completa para centralizar, modernizar y escalar tu gimnasio</p>
    </section><!-- Pricing Cards -->
    <section class="section pricing"><!-- Option 1: Essential -->
     <div class="pricing-card"><span class="card-badge badge-green"></span>
-     <h3>Essential App</h3><span class="price">3.000 €</span>
-     <div class="subtitle">
+     <h3 data-i18n="option1_title">Essential App</h3><span class="price">3.000 €</span>
+     <div class="subtitle" data-i18n="option1_subtitle">
       App móvil completa (iOS + Android)
      </div>
      <ul>
-      <li><strong>Centralización</strong> de los 2 gimnasios</li>
-      <li>Todas las secciones actuales con diseño, imágenes y contenido</li>
-      <li><strong>Chatbot básico</strong> + sistema de feedback</li>
-      <li>Preparación y <strong>publicación</strong> en App Store y Google Play</li>
-      <li>Set básico de diseño gráfico para Instagram</li>
-      <li>Soporte inicial post-publicación</li>
+      <li data-i18n="option1_feature1"><strong>Centralización</strong> de los 2 gimnasios</li>
+      <li data-i18n="option1_feature2">Todas las secciones actuales con diseño, imágenes y contenido</li>
+      <li data-i18n="option1_feature3"><strong>Chatbot básico</strong> + sistema de feedback</li>
+      <li data-i18n="option1_feature4">Preparación y <strong>publicación</strong> en App Store y Google Play</li>
+      <li data-i18n="option1_feature5">Set básico de diseño gráfico para Instagram</li>
+      <li data-i18n="option1_feature6">Soporte inicial post-publicación</li>
      </ul>
      <div class="ideal">
-      <div class="ideal-title">
+      <div class="ideal-title" data-i18n="ideal_title">
        Ideal para
       </div>
       <ul>
-       <li>Tener la app publicada y operativa</li>
-       <li>Presencia digital sólida</li>
-       <li>Comunicación centralizada</li>
+       <li data-i18n="option1_ideal1">Tener la app publicada y operativa</li>
+       <li data-i18n="option1_ideal2">Presencia digital sólida</li>
+       <li data-i18n="option1_ideal3">Comunicación centralizada</li>
       </ul>
      </div>
     </div><!-- Option 2: Professional (Featured) -->
     <div class="pricing-card featured"><span class="card-badge badge-blue"></span>
-     <h3>Professional Platform</h3><span class="price">5.500 €</span>
-     <div class="subtitle">
+     <h3 data-i18n="option2_title">Professional Platform</h3><span class="price">5.500 €</span>
+     <div class="subtitle" data-i18n="option2_subtitle">
       Todo lo anterior, más:
      </div>
      <ul>
-      <li><strong>Rediseño completo</strong> del logo</li>
-      <li>Set <strong>completo</strong> de diseño gráfico para Instagram</li>
-      <li>Arquitectura preparada para <strong>login de usuarios</strong></li>
-      <li>Catálogo completo de productos y servicios</li>
-      <li>Optimización <strong>UX/UI</strong> adicional</li>
-      <li>Preparación avanzada para escalado del proyecto</li>
-      <li>Mayor soporte durante revisión de Apple</li>
+      <li data-i18n="option2_feature1"><strong>Rediseño completo</strong> del logo</li>
+      <li data-i18n="option2_feature2">Set <strong>completo</strong> de diseño gráfico para Instagram</li>
+      <li data-i18n="option2_feature3">Arquitectura preparada para <strong>login de usuarios</strong></li>
+      <li data-i18n="option2_feature4">Catálogo completo de productos y servicios</li>
+      <li data-i18n="option2_feature5">Optimización <strong>UX/UI</strong> adicional</li>
+      <li data-i18n="option2_feature6">Preparación avanzada para escalado del proyecto</li>
+      <li data-i18n="option2_feature7">Mayor soporte durante revisión de Apple</li>
      </ul>
      <div class="ideal">
-      <div class="ideal-title">
+      <div class="ideal-title" data-i18n="ideal_title">
        Ideal para
       </div>
       <ul>
-       <li>Posicionar GYM TONIC como marca moderna</li>
-       <li>Tener una plataforma, no solo una app</li>
-       <li>Dejar lista la base para evolución futura</li>
+       <li data-i18n="option2_ideal1">Posicionar GYM TONIC como marca moderna</li>
+       <li data-i18n="option2_ideal2">Tener una plataforma, no solo una app</li>
+       <li data-i18n="option2_ideal3">Dejar lista la base para evolución futura</li>
       </ul>
      </div>
     </div><!-- Option 3: Premium -->
     <div class="pricing-card"><span class="card-badge badge-purple"></span>
-     <h3>Premium Digital Platform</h3><span class="price">8.500 €</span>
-     <div class="subtitle">
+     <h3 data-i18n="option3_title">Premium Digital Platform</h3><span class="price">8.500 €</span>
+     <div class="subtitle" data-i18n="option3_subtitle">
       Todo lo anterior, más:
      </div>
      <ul>
-      <li><strong>Activación de login</strong> de usuarios</li>
-      <li>Estructura de <strong>catálogo avanzada</strong></li>
-      <li>Bases de rutinas y contenidos personalizados</li>
-      <li><strong>Chatbot conversacional avanzado</strong></li>
-      <li>Sistema preparado para <strong>monetización</strong> futura</li>
-      <li>Dashboard básico de métricas</li>
-      <li>Branding digital completo (app + redes)</li>
-      <li>Acompañamiento estratégico en el lanzamiento</li>
+      <li data-i18n="option3_feature1"><strong>Activación de login</strong> de usuarios</li>
+      <li data-i18n="option3_feature2">Estructura de <strong>catálogo avanzada</strong></li>
+      <li data-i18n="option3_feature3">Bases de rutinas y contenidos personalizados</li>
+      <li data-i18n="option3_feature4"><strong>Chatbot conversacional avanzado</strong></li>
+      <li data-i18n="option3_feature5">Sistema preparado para <strong>monetización</strong> futura</li>
+      <li data-i18n="option3_feature6">Dashboard básico de métricas</li>
+      <li data-i18n="option3_feature7">Branding digital completo (app + redes)</li>
+      <li data-i18n="option3_feature8">Acompañamiento estratégico en el lanzamiento</li>
      </ul>
      <div class="ideal">
-      <div class="ideal-title">
+      <div class="ideal-title" data-i18n="ideal_title">
        Ideal para
       </div>
       <ul>
-       <li>Convertir la app en el núcleo digital del gimnasio</li>
-       <li>Diferenciarse claramente de la competencia</li>
-       <li>Escalar a servicios premium y fidelización</li>
+       <li data-i18n="option3_ideal1">Convertir la app en el núcleo digital del gimnasio</li>
+       <li data-i18n="option3_ideal2">Diferenciarse claramente de la competencia</li>
+       <li data-i18n="option3_ideal3">Escalar a servicios premium y fidelización</li>
       </ul>
      </div>
     </div>
    </section><!-- External Costs -->
    <section class="section notes">
-    <h3 id="footer-title">Costes externos (no incluidos)</h3>
+    <h3 id="footer-title" data-i18n="footer_title">Costes externos (no incluidos)</h3>
     <ul>
-     <li><strong>Dominio del gimnasio:</strong> ~400 €</li>
-     <li><strong>Apple Developer Account:</strong> 99 $ / año</li>
-     <li><strong>Google Play Developer Account:</strong> 25 $ (pago único)</li>
+     <li data-i18n="external_cost1"><strong>Dominio del gimnasio:</strong> ~400 €</li>
+     <li data-i18n="external_cost2"><strong>Apple Developer Account:</strong> 99 $ / año</li>
+     <li data-i18n="external_cost3"><strong>Google Play Developer Account:</strong> 25 $ (pago único)</li>
     </ul>
    </section>
   </main>
   <script>
+    // Translations object
+    const translations = {
+      es: {
+        main_title: 'Propuesta de precios',
+        subtitle: 'GYM TONIC App',
+        intro_text: 'Tu plataforma digital completa para centralizar, modernizar y escalar tu gimnasio',
+        option1_title: 'Essential App',
+        option1_subtitle: 'App móvil completa (iOS + Android)',
+        option1_feature1: '<strong>Centralización</strong> de los 2 gimnasios',
+        option1_feature2: 'Todas las secciones actuales con diseño, imágenes y contenido',
+        option1_feature3: '<strong>Chatbot básico</strong> + sistema de feedback',
+        option1_feature4: 'Preparación y <strong>publicación</strong> en App Store y Google Play',
+        option1_feature5: 'Set básico de diseño gráfico para Instagram',
+        option1_feature6: 'Soporte inicial post-publicación',
+        ideal_title: 'Ideal para',
+        option1_ideal1: 'Tener la app publicada y operativa',
+        option1_ideal2: 'Presencia digital sólida',
+        option1_ideal3: 'Comunicación centralizada',
+        option2_title: 'Professional Platform',
+        option2_subtitle: 'Todo lo anterior, más:',
+        option2_feature1: '<strong>Rediseño completo</strong> del logo',
+        option2_feature2: 'Set <strong>completo</strong> de diseño gráfico para Instagram',
+        option2_feature3: 'Arquitectura preparada para <strong>login de usuarios</strong>',
+        option2_feature4: 'Catálogo completo de productos y servicios',
+        option2_feature5: 'Optimización <strong>UX/UI</strong> adicional',
+        option2_feature6: 'Preparación avanzada para escalado del proyecto',
+        option2_feature7: 'Mayor soporte durante revisión de Apple',
+        option2_ideal1: 'Posicionar GYM TONIC como marca moderna',
+        option2_ideal2: 'Tener una plataforma, no solo una app',
+        option2_ideal3: 'Dejar lista la base para evolución futura',
+        option3_title: 'Premium Digital Platform',
+        option3_subtitle: 'Todo lo anterior, más:',
+        option3_feature1: '<strong>Activación de login</strong> de usuarios',
+        option3_feature2: 'Estructura de <strong>catálogo avanzada</strong>',
+        option3_feature3: 'Bases de rutinas y contenidos personalizados',
+        option3_feature4: '<strong>Chatbot conversacional avanzado</strong>',
+        option3_feature5: 'Sistema preparado para <strong>monetización</strong> futura',
+        option3_feature6: 'Dashboard básico de métricas',
+        option3_feature7: 'Branding digital completo (app + redes)',
+        option3_feature8: 'Acompañamiento estratégico en el lanzamiento',
+        option3_ideal1: 'Convertir la app en el núcleo digital del gimnasio',
+        option3_ideal2: 'Diferenciarse claramente de la competencia',
+        option3_ideal3: 'Escalar a servicios premium y fidelización',
+        footer_title: 'Costes externos (no incluidos)',
+        external_cost1: '<strong>Dominio del gimnasio:</strong> ~400 €',
+        external_cost2: '<strong>Apple Developer Account:</strong> 99 $ / año',
+        external_cost3: '<strong>Google Play Developer Account:</strong> 25 $ (pago único)',
+        recommended_badge: '⭐ Recomendada'
+      },
+      en: {
+        main_title: 'Pricing Proposal',
+        subtitle: 'GYM TONIC App',
+        intro_text: 'Your complete digital platform to centralize, modernize and scale your gym',
+        option1_title: 'Essential App',
+        option1_subtitle: 'Complete mobile app (iOS + Android)',
+        option1_feature1: '<strong>Centralization</strong> of both gyms',
+        option1_feature2: 'All current sections with design, images and content',
+        option1_feature3: '<strong>Basic chatbot</strong> + feedback system',
+        option1_feature4: 'Preparation and <strong>publication</strong> on App Store and Google Play',
+        option1_feature5: 'Basic Instagram graphic design set',
+        option1_feature6: 'Initial post-launch support',
+        ideal_title: 'Ideal for',
+        option1_ideal1: 'Having the app published and operational',
+        option1_ideal2: 'Strong digital presence',
+        option1_ideal3: 'Centralized communication',
+        option2_title: 'Professional Platform',
+        option2_subtitle: 'Everything above, plus:',
+        option2_feature1: '<strong>Complete logo redesign</strong>',
+        option2_feature2: '<strong>Complete</strong> Instagram graphic design set',
+        option2_feature3: 'Architecture prepared for <strong>user login</strong>',
+        option2_feature4: 'Complete catalog of products and services',
+        option2_feature5: 'Additional <strong>UX/UI</strong> optimization',
+        option2_feature6: 'Advanced preparation for project scaling',
+        option2_feature7: 'Enhanced support during Apple review',
+        option2_ideal1: 'Position GYM TONIC as a modern brand',
+        option2_ideal2: 'Have a platform, not just an app',
+        option2_ideal3: 'Prepare the foundation for future evolution',
+        option3_title: 'Premium Digital Platform',
+        option3_subtitle: 'Everything above, plus:',
+        option3_feature1: '<strong>User login activation</strong>',
+        option3_feature2: '<strong>Advanced catalog</strong> structure',
+        option3_feature3: 'Workout routines and personalized content bases',
+        option3_feature4: '<strong>Advanced conversational chatbot</strong>',
+        option3_feature5: 'System prepared for future <strong>monetization</strong>',
+        option3_feature6: 'Basic metrics dashboard',
+        option3_feature7: 'Complete digital branding (app + social media)',
+        option3_feature8: 'Strategic support during launch',
+        option3_ideal1: 'Turn the app into the digital core of the gym',
+        option3_ideal2: 'Clearly differentiate from competition',
+        option3_ideal3: 'Scale to premium services and customer loyalty',
+        footer_title: 'External costs (not included)',
+        external_cost1: '<strong>Gym domain:</strong> ~400 €',
+        external_cost2: '<strong>Apple Developer Account:</strong> $99 / year',
+        external_cost3: '<strong>Google Play Developer Account:</strong> $25 (one-time payment)',
+        recommended_badge: '⭐ Recommended'
+      },
+      de: {
+        main_title: 'Preisangebot',
+        subtitle: 'GYM TONIC App',
+        intro_text: 'Ihre vollständige digitale Plattform zur Zentralisierung, Modernisierung und Skalierung Ihres Fitnessstudios',
+        option1_title: 'Essential App',
+        option1_subtitle: 'Vollständige mobile App (iOS + Android)',
+        option1_feature1: '<strong>Zentralisierung</strong> beider Fitnessstudios',
+        option1_feature2: 'Alle aktuellen Bereiche mit Design, Bildern und Inhalten',
+        option1_feature3: '<strong>Basis-Chatbot</strong> + Feedback-System',
+        option1_feature4: 'Vorbereitung und <strong>Veröffentlichung</strong> im App Store und Google Play',
+        option1_feature5: 'Basis-Grafikdesign-Set für Instagram',
+        option1_feature6: 'Erste Support nach der Veröffentlichung',
+        ideal_title: 'Ideal für',
+        option1_ideal1: 'Die App veröffentlicht und betriebsbereit haben',
+        option1_ideal2: 'Starke digitale Präsenz',
+        option1_ideal3: 'Zentralisierte Kommunikation',
+        option2_title: 'Professional Platform',
+        option2_subtitle: 'Alles oben genannte, plus:',
+        option2_feature1: '<strong>Vollständiges Logo-Redesign</strong>',
+        option2_feature2: '<strong>Vollständiges</strong> Instagram-Grafikdesign-Set',
+        option2_feature3: 'Architektur vorbereitet für <strong>Benutzer-Login</strong>',
+        option2_feature4: 'Vollständiger Katalog von Produkten und Dienstleistungen',
+        option2_feature5: 'Zusätzliche <strong>UX/UI</strong>-Optimierung',
+        option2_feature6: 'Erweiterte Vorbereitung für Projektskalierung',
+        option2_feature7: 'Erweiterter Support w��hrend der Apple-Prüfung',
+        option2_ideal1: 'GYM TONIC als moderne Marke positionieren',
+        option2_ideal2: 'Eine Plattform haben, nicht nur eine App',
+        option2_ideal3: 'Die Basis für zukünftige Entwicklung vorbereiten',
+        option3_title: 'Premium Digital Platform',
+        option3_subtitle: 'Alles oben genannte, plus:',
+        option3_feature1: '<strong>Benutzer-Login-Aktivierung</strong>',
+        option3_feature2: '<strong>Erweiterte Katalog</strong>-Struktur',
+        option3_feature3: 'Trainingsroutinen und personalisierte Inhaltsbasis',
+        option3_feature4: '<strong>Erweiterter konversationeller Chatbot</strong>',
+        option3_feature5: 'System vorbereitet für zukünftige <strong>Monetarisierung</strong>',
+        option3_feature6: 'Basis-Metriken-Dashboard',
+        option3_feature7: 'Vollständiges digitales Branding (App + soziale Medien)',
+        option3_feature8: 'Strategische Unterstützung während des Launches',
+        option3_ideal1: 'Die App zum digitalen Kern des Fitnessstudios machen',
+        option3_ideal2: 'Sich klar von der Konkurrenz abheben',
+        option3_ideal3: 'Auf Premium-Services und Kundenbindung skalieren',
+        footer_title: 'Externe Kosten (nicht enthalten)',
+        external_cost1: '<strong>Fitnessstudio-Domain:</strong> ~400 €',
+        external_cost2: '<strong>Apple Developer Account:</strong> 99 $ / Jahr',
+        external_cost3: '<strong>Google Play Developer Account:</strong> 25 $ (einmalige Zahlung)',
+        recommended_badge: '⭐ Empfohlen'
+      },
+      fr: {
+        main_title: 'Proposition de prix',
+        subtitle: 'GYM TONIC App',
+        intro_text: 'Votre plateforme numérique complète pour centraliser, moderniser et développer votre salle de sport',
+        option1_title: 'Essential App',
+        option1_subtitle: 'Application mobile complète (iOS + Android)',
+        option1_feature1: '<strong>Centralisation</strong> des 2 salles de sport',
+        option1_feature2: 'Toutes les sections actuelles avec design, images et contenu',
+        option1_feature3: '<strong>Chatbot de base</strong> + système de feedback',
+        option1_feature4: 'Préparation et <strong>publication</strong> sur App Store et Google Play',
+        option1_feature5: 'Kit de design graphique de base pour Instagram',
+        option1_feature6: 'Support initial après publication',
+        ideal_title: 'Idéal pour',
+        option1_ideal1: 'Avoir l\'application publiée et opérationnelle',
+        option1_ideal2: 'Présence numérique solide',
+        option1_ideal3: 'Communication centralisée',
+        option2_title: 'Professional Platform',
+        option2_subtitle: 'Tout ce qui précède, plus :',
+        option2_feature1: '<strong>Refonte complète</strong> du logo',
+        option2_feature2: 'Kit <strong>complet</strong> de design graphique pour Instagram',
+        option2_feature3: 'Architecture préparée pour <strong>connexion utilisateur</strong>',
+        option2_feature4: 'Catalogue complet de produits et services',
+        option2_feature5: 'Optimisation <strong>UX/UI</strong> supplémentaire',
+        option2_feature6: 'Préparation avancée pour l\'évolution du projet',
+        option2_feature7: 'Support renforcé pendant la révision Apple',
+        option2_ideal1: 'Positionner GYM TONIC comme une marque moderne',
+        option2_ideal2: 'Avoir une plateforme, pas seulement une app',
+        option2_ideal3: 'Préparer la base pour l\'évolution future',
+        option3_title: 'Premium Digital Platform',
+        option3_subtitle: 'Tout ce qui précède, plus :',
+        option3_feature1: '<strong>Activation de connexion</strong> utilisateur',
+        option3_feature2: 'Structure de <strong>catalogue avancée</strong>',
+        option3_feature3: 'Base de routines et contenus personnalisés',
+        option3_feature4: '<strong>Chatbot conversationnel avancé</strong>',
+        option3_feature5: 'Système préparé pour <strong>monétisation</strong> future',
+        option3_feature6: 'Tableau de bord de métriques de base',
+        option3_feature7: 'Branding numérique complet (app + r��seaux sociaux)',
+        option3_feature8: 'Accompagnement stratégique au lancement',
+        option3_ideal1: 'Transformer l\'app en cœur numérique de la salle de sport',
+        option3_ideal2: 'Se différencier clairement de la concurrence',
+        option3_ideal3: 'Évoluer vers des services premium et fidélisation',
+        footer_title: 'Coûts externes (non inclus)',
+        external_cost1: '<strong>Domaine de la salle de sport :</strong> ~400 €',
+        external_cost2: '<strong>Apple Developer Account :</strong> 99 $ / an',
+        external_cost3: '<strong>Google Play Developer Account :</strong> 25 $ (paiement unique)',
+        recommended_badge: '⭐ Recommandé'
+      },
+      it: {
+        main_title: 'Proposta di prezzi',
+        subtitle: 'GYM TONIC App',
+        intro_text: 'La tua piattaforma digitale completa per centralizzare, modernizzare e scalare la tua palestra',
+        option1_title: 'Essential App',
+        option1_subtitle: 'App mobile completa (iOS + Android)',
+        option1_feature1: '<strong>Centralizzazione</strong> delle 2 palestre',
+        option1_feature2: 'Tutte le sezioni attuali con design, immagini e contenuti',
+        option1_feature3: '<strong>Chatbot base</strong> + sistema di feedback',
+        option1_feature4: 'Preparazione e <strong>pubblicazione</strong> su App Store e Google Play',
+        option1_feature5: 'Set base di design grafico per Instagram',
+        option1_feature6: 'Supporto iniziale post-pubblicazione',
+        ideal_title: 'Ideale per',
+        option1_ideal1: 'Avere l\'app pubblicata e operativa',
+        option1_ideal2: 'Presenza digitale solida',
+        option1_ideal3: 'Comunicazione centralizzata',
+        option2_title: 'Professional Platform',
+        option2_subtitle: 'Tutto quanto sopra, più:',
+        option2_feature1: '<strong>Redesign completo</strong> del logo',
+        option2_feature2: 'Set <strong>completo</strong> di design grafico per Instagram',
+        option2_feature3: 'Architettura preparata per <strong>login utenti</strong>',
+        option2_feature4: 'Catalogo completo di prodotti e servizi',
+        option2_feature5: 'Ottimizzazione <strong>UX/UI</strong> aggiuntiva',
+        option2_feature6: 'Preparazione avanzata per scalabilità del progetto',
+        option2_feature7: 'Supporto maggiore durante revisione Apple',
+        option2_ideal1: 'Posizionare GYM TONIC come marchio moderno',
+        option2_ideal2: 'Avere una piattaforma, non solo un\'app',
+        option2_ideal3: 'Preparare la base per l\'evoluzione futura',
+        option3_title: 'Premium Digital Platform',
+        option3_subtitle: 'Tutto quanto sopra, più:',
+        option3_feature1: '<strong>Attivazione login</strong> utenti',
+        option3_feature2: 'Struttura di <strong>catalogo avanzata</strong>',
+        option3_feature3: 'Base di routine e contenuti personalizzati',
+        option3_feature4: '<strong>Chatbot conversazionale avanzato</strong>',
+        option3_feature5: 'Sistema preparato per <strong>monetizzazione</strong> futura',
+        option3_feature6: 'Dashboard base di metriche',
+        option3_feature7: 'Branding digitale completo (app + social)',
+        option3_feature8: 'Accompagnamento strategico nel lancio',
+        option3_ideal1: 'Trasformare l\'app nel nucleo digitale della palestra',
+        option3_ideal2: 'Differenziarsi chiaramente dalla concorrenza',
+        option3_ideal3: 'Scalare a servizi premium e fidelizzazione',
+        footer_title: 'Costi esterni (non inclusi)',
+        external_cost1: '<strong>Dominio della palestra:</strong> ~400 €',
+        external_cost2: '<strong>Apple Developer Account:</strong> 99 $ / anno',
+        external_cost3: '<strong>Google Play Developer Account:</strong> 25 $ (pagamento unico)',
+        recommended_badge: '⭐ Consigliata'
+      }
+    };
+
+    // Current language
+    let currentLanguage = 'es';
+
+    // Update badge text
+    function updateBadge() {
+      const featured = document.querySelector('.pricing-card.featured::before');
+      const styleSheet = document.styleSheets[0];
+      
+      // Find and update the ::before rule
+      for (let i = 0; i < styleSheet.cssRules.length; i++) {
+        if (styleSheet.cssRules[i].selectorText === '.pricing-card.featured::before') {
+          styleSheet.cssRules[i].style.content = `'${translations[currentLanguage].recommended_badge}'`;
+          break;
+        }
+      }
+    }
+
+    // Change language function
+    function changeLanguage(lang) {
+      currentLanguage = lang;
+      
+      // Update all elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          element.innerHTML = translations[lang][key];
+        }
+      });
+
+      // Update active button
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        }
+      });
+
+      // Update badge
+      updateBadge();
+    }
+
     // Default config
     const defaultConfig = {
       main_title: 'Propuesta de precios',
@@ -432,11 +770,16 @@
     async function onConfigChange(newConfig) {
       config = newConfig;
       
-      // Update text content
-      document.getElementById('main-title').textContent = config.main_title || defaultConfig.main_title;
-      document.getElementById('subtitle').textContent = config.subtitle || defaultConfig.subtitle;
-      document.getElementById('intro-text').textContent = config.intro_text || defaultConfig.intro_text;
-      document.getElementById('footer-title').textContent = config.footer_title || defaultConfig.footer_title;
+      // Update text content (only editable fields)
+      const mainTitle = document.getElementById('main-title');
+      const subtitle = document.getElementById('subtitle');
+      const introText = document.getElementById('intro-text');
+      const footerTitle = document.getElementById('footer-title');
+
+      if (mainTitle) mainTitle.textContent = config.main_title || defaultConfig.main_title;
+      if (subtitle) subtitle.textContent = config.subtitle || defaultConfig.subtitle;
+      if (introText) introText.textContent = config.intro_text || defaultConfig.intro_text;
+      if (footerTitle) footerTitle.textContent = config.footer_title || defaultConfig.footer_title;
     }
 
     // Initialize SDK
@@ -479,14 +822,26 @@
       });
     }, observerOptions);
 
-    // Observe all sections and cards
+    // Initialize on DOMContentLoaded
     document.addEventListener('DOMContentLoaded', () => {
+      // Observe all sections and cards
       const sections = document.querySelectorAll('.section');
       const cards = document.querySelectorAll('.pricing-card');
       
       sections.forEach(section => observer.observe(section));
       cards.forEach(card => observer.observe(card));
+
+      // Add language selector event listeners
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          changeLanguage(lang);
+        });
+      });
+
+      // Set initial language
+      changeLanguage('es');
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b03ba1ef209cfb5',t:'MTc2NjExNDAzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b03ca1574bacfb5',t:'MTc2NjExNDY5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
